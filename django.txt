@@ -1,0 +1,23 @@
+Para subir 
+	python manage.py runserver
+
+Para parar a aplicação
+	Ctrl + C
+
+1) Criar a classe em "models.py"
+2) Registrar a classse em "admin.py"
+
+
+3) python manage.py makemigrations 
+	Se tiver alguma alteração nas classes, será criado um arquivo de migração
+
+4) python manage.py migrate
+	Essa migração será alterada no banco de dados
+
+5) Criar a url (mapeamento (path)) em "urls.py"
+
+6) Criar a função em "views.py"
+
+7) Irá criar a página dentro da pasta "templates" do módulo (app)
+
+8) Adicionar a base do template da concessionaria no caso aqui base.html

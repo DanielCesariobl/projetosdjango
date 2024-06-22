@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+   <h2>Marcas</h2>
+   <table>
+      <thead>
+      <tr>
+         <td>Nome</td>
+         <td>Ações</td>  
+      </tr>
+   </thead>
+   <tbody>
+      {% for m in marcas %}
+      <tr>
+         <td>{{m.nome}}</td>
+         <td>Alterar Excluir</td>
+      </tr>
+      {% endfor %}
+   </tbody>
+   </table>
+{% endblock %}
