@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from cadastro.forms import MarcaForm
 from cadastro.models import Cliente, Marca
 
 # Create your views here.
@@ -12,6 +13,33 @@ def segundo(request):
 def listarMarcas(request):
     marcas = Marca.objects.order_by('nome')
     return render(request, 'marcas/lista.html',{'marcas': marcas}) 
+
+def incluirMarca(request):
+    if request.method == 'POST':
+        form = MarcaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_marcas')
+    form = MarcaForm()
+    return render(request, 'marcas/form_marca.html', {'form': form})    
+
+def alterarMarca(request, id):
+     marca = Marca.objects.get(id = id)
+     if request.method ==  'POST':
+        form = MarcaForm(request.POST, instance = marca)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_marcas')
+     form = MarcaForm(instance = marca)
+     return render(request, 'marcas/form_marca.html', {'form': form})
+
+def excluirMarca(request, id):
+    marca = Marca.objects.get (id = id)
+    try:
+     marca.delete()
+    except:
+      pass    
+    return redirect('listar_marcas')
 
 def listarCliente(request):
     cliente = Cliente.objects.order_by('nome')
