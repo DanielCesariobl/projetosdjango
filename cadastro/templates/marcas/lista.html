@@ -2,7 +2,7 @@
 {% block content %}
    <h2>Marcas</h2>
    <a href="{% url 'incluir_marca' %}" class="btn btn-info btn-lg">Incluir nova marca</a>
-   <table>
+   <table class='table table-striped'>
       <thead>
       <tr>
          <td>Nome</td>
@@ -14,8 +14,8 @@
       <tr>
          <td>{{m.nome}}</td>
          <td>
-            <a href ="{% url 'alterar_marca' m.id %}" class="btn btn-primary">Alterar</a>
-            <a href= "{% url 'excluir_marca' m.id %}" class = "btn btn-danger" >Excluir</a> 
+            <a href ="{% url 'alterar_marca' m.id %}" class="btn btn-primary" >Alterar</a>
+            <a href= "#" class = "btn btn-danger" onclick="abrirTela('{% url 'excluir_marca' m.id %}')" >Excluir</a> 
          </td>
       </tr>
       {% endfor %}

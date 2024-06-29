@@ -19,7 +19,7 @@ urlpatterns =[
     path('/listar_cliente', views.listarCliente,
     name='listar_cliente'),
 
-     path('/incluir_cliente', views.incluirCliente,
+    path('/incluir_cliente', views.incluirCliente,
     name='incluir_cliente'),
 
     path('/alterar_cliente/<int:id>', views.alterarCliente, name = 'alterar_cliente'),
