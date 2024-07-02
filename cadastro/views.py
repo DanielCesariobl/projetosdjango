@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from cadastro.forms import ClienteForm, MarcaForm
-from cadastro.models import Cliente, Marca
+from cadastro.forms import ClienteForm, MarcaForm, ModeloForm
+from cadastro.models import Cliente, Marca, Modelo
 
 # Create your views here.
 def index(request):
@@ -76,4 +76,41 @@ def excluirCliente(request, id):
     except:
       pass    
     return redirect('listar_cliente')
+
+#==========================================================================================
+# Modelos
+
+def listarModelo(request):
+
+    modelo = Modelo.objects.order_by('nome')
+    return render(request, 'modelo/lista.html',{'modelo': modelo}) 
+    
+def incluirModelo(request):
+    if request.method == 'POST':
+        form = ModeloForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_modelo')
+    form = ModeloForm()
+    return render(request, 'modelo/form_modelo.html', {'form': form})
+
+def alterarModelo(request, id):
+     modelo = Modelo.objects.get(id = id) #get - buscando o cliente por id 
+     if request.method ==  'POST':
+        form = ModeloForm(request.POST, instance = modelo)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_modelo')
+     form = ModeloForm(instance = modelo)
+     return render(request, 'modelo/form_modelo.html', {'form': form})
+
+def excluirModelo(request, id):
+    modelo = Modelo.objects.get (id = id)
+    try:
+     modelo.delete()
+    except:
+      pass    
+    return redirect('listar_modelo')
+
+
     

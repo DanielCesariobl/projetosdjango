@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+   <h2>Modelo</h2>
+   <a href="{% url 'incluir_modelo' %}" class="btn btn-info btn-lg">Incluir Novo Modelo</a>
+
+   <table class='table table-striped'>
+      <thead>
+      <tr>
+         <td>Nome</td>
+         <td>Marca</td>
+         <td>Acões</td>
+      </tr>
+   </thead>
+   <tbody>
+      {% for m in modelo %}
+      <tr>
+         <td>{{m.nome}}</td>
+         <td>{{m.marca}}</td>
+         <td>
+            
+            <a href ="{% url 'alterar_modelo' m.id %}" class="btn btn-primary">Alterar</a>
+            <a href= "#" class = "btn btn-danger" onclick="abrirTela('{% url 'excluir_modelo' m.id %}')" >Excluir</a> 
+            
+         </td>        
+      </tr>
+      {% endfor %}
+   </tbody>
+   </table>
+{% endblock %}
