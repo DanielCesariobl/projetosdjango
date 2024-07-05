@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from cadastro.forms import ClienteForm, MarcaForm, ModeloForm
-from cadastro.models import Cliente, Marca, Modelo
+from cadastro.forms import ClienteForm, MarcaForm, ModeloForm, VeiculoForm
+from cadastro.models import Cliente, Marca, Modelo, Veiculo
 from django.contrib import messages
 
 # Create your views here.
@@ -111,6 +111,42 @@ def excluirModelo(request, id):
     except:
       pass    
     return redirect('listar_modelo')
+#===========================================================================================
+#VEICULO
+
+def listarVeiculo(request):
+
+    veiculo = Veiculo.objects.order_by('ano_modelo')
+    return render(request, 'veiculo/lista.html',{'veiculo': veiculo}) 
+    
+def incluirVeiculo(request):
+    if request.method == 'POST':
+        form = VeiculoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_veiculo')
+    form = VeiculoForm()
+    return render(request, 'veiculo/form_veiculo.html', {'form': form})
+
+def alterarVeiculo(request, id):
+     veiculo = Veiculo.objects.get(id = id) #get - buscando o cliente por id 
+     if request.method ==  'POST':
+        form = VeiculoForm(request.POST, instance = veiculo)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_veiculo')
+     form = VeiculoForm(instance = veiculo)
+     return render(request, 'veiculo/form_veiculo.html', {'form': form})
+
+def excluirVeiculo(request, id):
+    veiculo = Veiculo.objects.get (id = id)
+    try:
+     veiculo.delete()
+    except:
+      pass    
+    return redirect('listar_veiculo')
+
+
 
 
     

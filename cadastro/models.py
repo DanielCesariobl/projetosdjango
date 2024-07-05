@@ -24,6 +24,20 @@ class Modelo(models.Model):
     def __str__(self):
         return f'{self.nome} - {self.marca.nome}'
 
+
+#====================================================================================
+#VEICULO
+class Veiculo(models.Model):
+    modelo = models.ForeignKey(Modelo, on_delete=models.DO_NOTHING)
+    ano_modelo = models.IntegerField(max_length=4)
+    ano_fabricacao = models.IntegerField(max_length=4)
+    preco = models.DecimalField(max_digits=18, decimal_places=2)
+    observacao = models.CharField(max_length=255)
+    def __str__(self):
+        return f'{self.modelo} - {self.ano_modelo} - {self.ano_fabricacao} - {self.preco} - {self.observacao}'
+
+
+
    
         
 

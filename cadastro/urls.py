@@ -23,4 +23,14 @@ urlpatterns =[
     path('/alterar_modelo/<int:id>', views.alterarModelo,name = 'alterar_modelo'),
     path ('/excluir_modelo/<int:id>', views.excluirModelo, name = 'excluir_modelo'),
 
+    #=====================================================================================
+    #Veiculo
+    path ('/listar_veiculo', views.listarVeiculo,name='listar_veiculo'),
+    path('/incluir_veiculo', views.incluirVeiculo,name='incluir_veiculo'),
+    path('/alterar_veiculo/<int:id>', views.alterarVeiculo,name = 'alterar_veiculo'),
+    path ('/excluir_veiculo/<int:id>', views.excluirVeiculo, name = 'excluir_veiculo'),
+
+
+
+
 ]
